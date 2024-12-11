@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "../styles/Home.module.css";
+import Image from "next/image";
 
 const Header = () => {
   return (
@@ -13,13 +14,13 @@ const Header = () => {
 
       {/* Main Section */}
       <div className={styles.navbarMain}>
-        <div className={styles.logo}>LOGO</div>
+        <div className={styles.logo}><Image src="/images/Logo.jpg" alt="Logo" width={50} height={50} /></div>
         <nav className={styles.navLinks}>
-          <a href="#">Shop</a>
-          <a href="#">Skills</a>
-          <a href="#">Stories</a>
-          <a href="#">About</a>
-          <a href="#">Contact Us</a>
+          <a href="/shop">Shop</a>
+          <a href="/skills">Skills</a>
+          <a href="/stories">Stories</a>
+          <a href="/about">About</a>
+          <a href="contact-us">Contact Us</a>
         </nav>
         <div className={styles.navIcons}>
           <span>🔍</span>

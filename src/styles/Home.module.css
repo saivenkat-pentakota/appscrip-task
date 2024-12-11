@@ -51,6 +51,8 @@
   font-weight: bold;
 }
 
+
+
 .navLinks {
   display: flex;
   gap: 20px;
@@ -251,12 +253,12 @@
   font-size: 1.5rem;
   margin-right: 1rem;
 }
-
+/* 
 .paymentIcons img {
   width: 40px;
   margin-right: 0.5rem;
   margin-top: 1rem;
-}
+} */
 
 .copyright {
   text-align: center;

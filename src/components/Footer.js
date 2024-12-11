@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "../styles/Home.module.css";
+import Image from "next/image";
 
 const Footer = () => {
   return (
@@ -65,12 +66,7 @@ const Footer = () => {
 
           <h4>mettā muse ACCEPTS</h4>
           <div className={styles.paymentIcons}>
-            <img src="/images/google-pay.png" alt="Google Pay" />
-            <img src="/images/visa.png" alt="Visa" />
-            <img src="/images/paypal.png" alt="PayPal" />
-            <img src="/images/amex.png" alt="Amex" />
-            <img src="/images/apple-pay.png" alt="Apple Pay" />
-            <img src="/images/shop-pay.png" alt="Shop Pay" />
+          <Image src="/images/payments.jpg" alt="payments" width={500} height={250} />
           </div>
         </div>
       </div>
