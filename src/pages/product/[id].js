@@ -1,4 +1,5 @@
 import axios from "axios";
+import Image from "next/image";
 
 const ProductDetails = ({ product }) => {
   if (!product) {
@@ -8,7 +9,13 @@ const ProductDetails = ({ product }) => {
   return (
     <div>
       <h1>{product.title}</h1>
-      <img src={product.image} alt={product.title} />
+      <Image
+        src={product.image}
+        alt={product.title}
+        width={500}
+        height={500} 
+        objectFit="contain"
+      />
       <p>{product.description}</p>
       <p><strong>Price:</strong> ${product.price}</p>
       <p><strong>Category:</strong> {product.category}</p>
@@ -23,7 +30,7 @@ export async function getServerSideProps(context) {
   try {
     const res = await axios.get(`https://fakestoreapi.com/products/${id}`);
     return { props: { product: res.data } };
-  } catch (error) {
+  } catch {
     return { props: { product: null } };
   }
 }
