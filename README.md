@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+AppScrip-Task App
+Overview
+The AppScrip-Task app is a React.js and Next.js based application that fetches product data from the Fake Store API and displays it on the website. The app is fully hosted on Netlify.
 
-## Getting Started
+Features:
 
-First, run the development server:
+Display a list of products from the Fake Store API
+Product detail page for individual items
+Responsive design
+Pagination for navigating through products
+Footer and Header components for consistent layout
+Table of Contents
+Installation
+Usage
+Folder Structure
+Technologies Used
+Hosted on Netlify
+Installation
 
-```bash
+To run the project locally, follow these steps:
+
+Clone the repository:
+
+
+git clone https://github.com/saivenkat-pentakota/appscrip-task.git
+Navigate to the project directory:
+
+cd AppScrip-task
+Install dependencies: If you have npm installed, run the following:
+
+
+npm install
+Start the development server:
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Visit the app in your browser at: http://localhost:3000.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Usage
+After starting the server, the app will display a list of products fetched from the Fake Store API. You can click on individual products to see their detailed view. Pagination is implemented to navigate through the product list.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Pages:
+Home (/): Displays a list of products with pagination.
+Product Detail (/product/[id]): Displays detailed information about a specific product when clicked.
+Folder Structure
+Here is the structure of the project:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+src/
+├── components/
+│   ├── Footer.js         # Footer component
+│   ├── Header.js         # Header component
+│   ├── Pagination.js     # Pagination component
+│   └── ProductCard.js    # Product card component to display each product
+├── pages/
+│   ├── product/
+│   │   ├── [id].js       # Dynamic route for individual product details
+│   │   └── index.js      # Home page listing all products
+│   ├── _app.js           # Custom App for Next.js
+├── styles/
+│   ├── global.css        # Global styles for the app
+│   └── Home.module.css   # Module specific styles for the homepage
 
-## Learn More
+Explanation of Key Files:
 
-To learn more about Next.js, take a look at the following resources:
+components/Header.js: Contains the navigation bar at the top of the page.
+components/Footer.js: Contains the footer with basic information.
+components/Pagination.js: Displays the pagination controls for navigating through products.
+components/ProductCard.js: Displays individual product details like title, price, and image.
+pages/product/[id].js: Dynamic route page to show the details of a specific product.
+pages/product/index.js: The main product listing page that displays a paginated list of products.
+Technologies Used
+React.js: JavaScript library for building user interfaces.
+Next.js: React framework for building server-rendered applications.
+Fake Store API: API used to fetch fake product data for the app.
+CSS Modules: For styling components with scoped styles.
+Netlify: Platform used for deploying and hosting the app.
+Hosted on Netlify
+The app is live and hosted on Netlify. You can access the deployed version here:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+AppScrip-Task App on Netlify:
+https://appscriptask-90521.netlify.app/

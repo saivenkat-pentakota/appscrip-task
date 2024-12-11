@@ -6,7 +6,7 @@ const ProductCard = ({ product }) => {
       <Image
         src={product.image}
         alt={product.title}
-        width={300} 
+        width={200} 
         height={200}
         objectFit="contain"
       />
