@@ -7,7 +7,6 @@ import Footer from "../components/Footer";
 import styles from "../styles/Home.module.css";
 
 export default function Home({ initialProducts, categories }) {
-  const [products, setProducts] = useState(initialProducts);
   const [filteredProducts, setFilteredProducts] = useState(initialProducts);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOption, setSortOption] = useState("");
@@ -16,7 +15,7 @@ export default function Home({ initialProducts, categories }) {
   const itemsPerPage = 8;
 
   useEffect(() => {
-    let result = [...products];
+    let result = [...initialProducts]; 
 
     // Filter by search query
     if (searchQuery) {
@@ -42,7 +41,7 @@ export default function Home({ initialProducts, categories }) {
     }
 
     setFilteredProducts(result);
-  }, [searchQuery, sortOption, products, selectedCategory]);
+  }, [searchQuery, sortOption, initialProducts, selectedCategory]); 
 
   // Pagination logic
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
@@ -64,7 +63,7 @@ export default function Home({ initialProducts, categories }) {
         className={styles.inputSearch}
       />
       <div className={styles.filterAndSortComponent}>
-        {/* Dynamic Category Filter */}
+        {/*Category Filter */}
         <select
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
@@ -124,7 +123,7 @@ export async function getServerSideProps() {
   return {
     props: {
       initialProducts: productsRes.data,
-      categories: categoriesRes.data, // Pass categories from the API
+      categories: categoriesRes.data, 
     },
   };
 }
