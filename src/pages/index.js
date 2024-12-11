@@ -12,6 +12,7 @@ export default function Home({ initialProducts, categories }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOption, setSortOption] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState(""); 
   const itemsPerPage = 8;
 
   useEffect(() => {
@@ -21,6 +22,13 @@ export default function Home({ initialProducts, categories }) {
     if (searchQuery) {
       result = result.filter((p) =>
         p.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    // Filter by category
+    if (selectedCategory) {
+      result = result.filter((p) =>
+        p.category.toLowerCase().includes(selectedCategory.toLowerCase())
       );
     }
 
@@ -34,7 +42,7 @@ export default function Home({ initialProducts, categories }) {
     }
 
     setFilteredProducts(result);
-  }, [searchQuery, sortOption, products]);
+  }, [searchQuery, sortOption, products, selectedCategory]);
 
   // Pagination logic
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
@@ -56,31 +64,32 @@ export default function Home({ initialProducts, categories }) {
         className={styles.inputSearch}
       />
       <div className={styles.filterAndSortComponent}>
-      <select
-        value={sortOption}
-        onChange={(e) => setSortOption(e.target.value)}
-        className={styles.selectFilter}
-      >
-        <option value="">Show Filter</option>
-        <option value="all">ALL</option>
-        <option value="men">MEN</option>
-        <option value="women">women</option>
-        <option value="baby & kids">kids</option>
-        
-      </select>
+        {/* Dynamic Category Filter */}
+        <select
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+          className={styles.selectFilter}
+        >
+          <option value="">Select Category</option>
+          {categories.map((category) => (
+            <option key={category} value={category}>
+              {category.charAt(0).toUpperCase() + category.slice(1)}
+            </option>
+          ))}
+        </select>
 
-      {/* Recommended Option */}
-      <select
-        value={sortOption}
-        onChange={(e) => setSortOption(e.target.value)}
-        className={styles.selectFilter}
-      >
-        <option value="">RECOMMENDED</option>
-        <option value="newest-first">NEWEST FIRST</option>
-        <option value="popular">POPULAR</option>
-        <option value="price-desc">PRICE:HIGH TO LOW</option>
-        <option value="price-asc">PRICE:LOW TO HIGH</option>
-      </select>
+        {/* Sort Options */}
+        <select
+          value={sortOption}
+          onChange={(e) => setSortOption(e.target.value)}
+          className={styles.selectFilter}
+        >
+          <option value="">Sort by</option>
+          <option value="newest-first">NEWEST FIRST</option>
+          <option value="popular">POPULAR</option>
+          <option value="price-desc">PRICE: HIGH TO LOW</option>
+          <option value="price-asc">PRICE: LOW TO HIGH</option>
+        </select>
       </div>
 
       {/* Products Grid */}
@@ -115,7 +124,7 @@ export async function getServerSideProps() {
   return {
     props: {
       initialProducts: productsRes.data,
-      categories: categoriesRes.data,
+      categories: categoriesRes.data, // Pass categories from the API
     },
   };
 }
