@@ -23,11 +23,11 @@ const Header = () => {
           <a href="contact-us">Contact Us</a>
         </nav>
         <div className={styles.navIcons}>
-          <span>🔍</span>
-          <span>❤️</span>
-          <span>🛒</span>
-          <span>👤</span>
-          <span>ENG ⌄</span>
+          <span><Image src="/images/search-normal.png" alt="search" width={30} height={30} /></span>
+          <span><Image src="/images/heart.png" alt="heart" width={30} height={30} /></span>
+          <span><Image src="/images/shopping-bag.png" alt="cart" width={30} height={30} /></span>
+          <span><Image src="/images/profile.png" alt="profile" width={30} height={30} /></span>
+          <span><Image src="/images/Language.png" alt="language" width={30} height={30} /></span>
         </div>
       </div>
 

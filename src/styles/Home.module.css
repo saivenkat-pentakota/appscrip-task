@@ -138,34 +138,119 @@
     border-radius: 5px;
     font-size: 16px;
 }
-
-/* Product card styles */
+/* Product card container */
 .productCard {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    background: #fff;
-    transition: box-shadow 0.3s ease;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.3s ease;
+  max-width: 300px;
+  margin: 10px auto;
+  text-align: center;
 }
 
 .productCard:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.productCard img {
-    width: 100%;
-    height: 200px;
-    object-fit: contain;
+/* Image container with fixed size */
+.imageContainer {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 10px;
 }
 
-.productCard h3 {
-    font-size: 1.2rem;
-    margin: 10px;
+.productImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
-.productCard p {
-    margin: 0 10px 10px;
+/* Title styles */
+.productTitle {
+  font-size: 1.2rem;
+  margin: 10px 0;
 }
+
+/* Price styles */
+.productPrice,
+.productRating {
+  margin: 5px 0;
+  font-size: 0.9rem;
+}
+
+/* Add to Cart Button */
+/* .addToCart {
+  display: flex;
+  align-items: center;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.addToCart:hover {
+  background-color: #0056b3;
+}
+
+.cartIcon {
+  margin-right: 8px;
+} */
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .productCard {
+    max-width: 250px;
+    margin: 15px;
+  }
+
+  .productTitle {
+    font-size: 1.1rem;
+  }
+
+  .productPrice,
+  .productRating {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .productCard {
+    max-width: 300px;
+  }
+}
+
+/* Mobile Design */
+@media (max-width: 767px) {
+  .productCard {
+    padding: 10px;
+    max-width: 100%;
+  }
+
+  .productTitle {
+    font-size: 1rem;
+  }
+
+  .productPrice,
+  .productRating {
+    font-size: 0.8rem;
+  }
+}
+
 
 /* Pagination styles */
 .pagination {
@@ -253,12 +338,7 @@
   font-size: 1.5rem;
   margin-right: 1rem;
 }
-/* 
-.paymentIcons img {
-  width: 40px;
-  margin-right: 0.5rem;
-  margin-top: 1rem;
-} */
+
 
 .copyright {
   text-align: center;

@@ -77,17 +77,18 @@ export default function Home({ initialProducts, categories }) {
           ))}
         </select>
 
-        {/* Sort Options */}
+        {/* Recommended/sort Options */}
         <select
           value={sortOption}
           onChange={(e) => setSortOption(e.target.value)}
           className={styles.selectFilter}
         >
-          <option value="">Sort by</option>
-          <option value="newest-first">NEWEST FIRST</option>
-          <option value="popular">POPULAR</option>
+          <option value="">RECOMMENDED</option>
           <option value="price-desc">PRICE: HIGH TO LOW</option>
           <option value="price-asc">PRICE: LOW TO HIGH</option>
+          <option value="newest-first">NEWEST FIRST</option>
+          <option value="popular">POPULAR</option>
+          
         </select>
       </div>
 

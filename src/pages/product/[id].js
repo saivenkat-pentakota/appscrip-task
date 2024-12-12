@@ -1,5 +1,6 @@
 import axios from "axios";
 import Image from "next/image";
+import styles from "../../styles/ProductCardDetails.module.css";
 
 const ProductDetails = ({ product }) => {
   if (!product) {
@@ -7,19 +8,24 @@ const ProductDetails = ({ product }) => {
   }
 
   return (
-    <div>
-      <h1>{product.title}</h1>
-      <Image
-        src={product.image}
-        alt={product.title}
-        width={500}
-        height={500} 
-        objectFit="contain"
-      />
-      <p>{product.description}</p>
-      <p><strong>Price:</strong> ${product.price}</p>
-      <p><strong>Category:</strong> {product.category}</p>
-      <p><strong>Rating:</strong> {product.rating.rate} / 5</p>
+    <div className={styles.container}>
+      <div className={styles.imageSection}>
+        <Image
+          src={product.image}
+          alt={product.title}
+          width={500}
+          height={500}
+          className={styles.productImage}
+        />
+      </div>
+      <div className={styles.detailsSection}>
+        <h2 className={styles.category}>{product.category.toUpperCase()}</h2>
+        <h1 className={styles.title}>{product.title}</h1>
+        <p>{product.description}</p>
+
+        <p className={styles.price}>€{product.price}</p>
+        <button className={styles.buyNow}>BUY NOW</button>
+      </div>
     </div>
   );
 };
