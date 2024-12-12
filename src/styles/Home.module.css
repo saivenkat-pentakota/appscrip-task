@@ -42,20 +42,21 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px 20px;
-  border-bottom: 1px solid #ddd;
+  padding:10px 20px 10px 20px;
+  border-bottom: 1px solid #555;
 }
 
 .logo {
   font-size: 1.5rem;
-  font-weight: bold;
+  color: #000;
 }
 
 
 
 .navLinks {
   display: flex;
-  gap: 20px;
+  gap: 55px;
+  padding-left: 160px;
 }
 
 .navLinks a {
@@ -115,17 +116,43 @@
 }
 
 /* Search bar styles */
-.inputSearch {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 16px;
+/* Search bar styles */
+.searchbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.searchWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputSearch {
+  width: 500px;
+  padding: 10px 35px 10px 10px; 
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.searchWrapper .searchIcon {
+  position: absolute;
+  right: 10px; 
+  pointer-events: none; 
+}
+
+.inputSearch:focus {
+  border-color: #007bff; 
+  outline: none; 
+}
+
 
 /* Filters and sorting */
 .filterAndSortComponent{
+  margin-top: 20px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;

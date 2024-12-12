@@ -3,19 +3,20 @@ import { useState, useEffect } from "react";
 import ProductCard from "../components/ProductCard";
 import Pagination from "../components/Pagination";
 import Header from "../components/Header";
-import Footer from "../components/Footer"; 
+import Footer from "../components/Footer";
 import styles from "../styles/Home.module.css";
+import Image from "next/image";
 
 export default function Home({ initialProducts, categories }) {
   const [filteredProducts, setFilteredProducts] = useState(initialProducts);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOption, setSortOption] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedCategory, setSelectedCategory] = useState(""); 
+  const [selectedCategory, setSelectedCategory] = useState("");
   const itemsPerPage = 8;
 
   useEffect(() => {
-    let result = [...initialProducts]; 
+    let result = [...initialProducts];
 
     // Filter by search query
     if (searchQuery) {
@@ -41,7 +42,7 @@ export default function Home({ initialProducts, categories }) {
     }
 
     setFilteredProducts(result);
-  }, [searchQuery, sortOption, initialProducts, selectedCategory]); 
+  }, [searchQuery, sortOption, initialProducts, selectedCategory]);
 
   // Pagination logic
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
@@ -51,66 +52,78 @@ export default function Home({ initialProducts, categories }) {
   );
 
   return (
-    <div className={styles.container}>
-      <Header/>
+    <>
+      <Header />
+      <div className={styles.container}>
+        {/* Search Bar */}
+        <div className={styles.searchbar}>
+          <div className={styles.searchWrapper}>
+            <input
+              type="text"
+              placeholder="Search products by name..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className={styles.inputSearch}
+            />
+            <Image
+              src="/images/search-normal.png"
+              alt="search"
+              width={25}
+              height={25}
+              className={styles.searchIcon}
+            />
+          </div>
+        </div>
 
-      {/* Search Bar */}
-      <input
-        type="text"
-        placeholder="Search products..."
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        className={styles.inputSearch}
-      />
-      <div className={styles.filterAndSortComponent}>
-        {/*Category Filter */}
-        <select
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-          className={styles.selectFilter}
-        >
-          <option value="">Select Category</option>
-          {categories.map((category) => (
-            <option key={category} value={category}>
-              {category.charAt(0).toUpperCase() + category.slice(1)}
-            </option>
+        <div className={styles.filterAndSortComponent}>
+          {/*Category Filter */}
+          <select
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            className={styles.selectFilter}
+          >
+            <option value="">Select Category</option>
+            {categories.map((category) => (
+              <option key={category} value={category}>
+                {category.charAt(0).toUpperCase() + category.slice(1)}
+              </option>
+            ))}
+          </select>
+
+          {/* Recommended/sort Options */}
+          <select
+            value={sortOption}
+            onChange={(e) => setSortOption(e.target.value)}
+            className={styles.selectFilter}
+          >
+            <option value="">RECOMMENDED</option>
+            <option value="price-desc">PRICE: HIGH TO LOW</option>
+            <option value="price-asc">PRICE: LOW TO HIGH</option>
+            <option value="newest-first">NEWEST FIRST</option>
+            <option value="popular">POPULAR</option>
+          </select>
+        </div>
+
+        {/* Products Grid */}
+        <div className={styles.grid}>
+          {paginatedProducts.map((product) => (
+            <a key={product.id} href={`/product/${product.id}`}>
+              <ProductCard product={product} />
+            </a>
           ))}
-        </select>
+        </div>
 
-        {/* Recommended/sort Options */}
-        <select
-          value={sortOption}
-          onChange={(e) => setSortOption(e.target.value)}
-          className={styles.selectFilter}
-        >
-          <option value="">RECOMMENDED</option>
-          <option value="price-desc">PRICE: HIGH TO LOW</option>
-          <option value="price-asc">PRICE: LOW TO HIGH</option>
-          <option value="newest-first">NEWEST FIRST</option>
-          <option value="popular">POPULAR</option>
-          
-        </select>
+        {/* Pagination Component */}
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+        />
+
+        {/* Footer Component */}
+        <Footer />
       </div>
-
-      {/* Products Grid */}
-      <div className={styles.grid}>
-        {paginatedProducts.map((product) => (
-          <a key={product.id} href={`/product/${product.id}`}>
-            <ProductCard product={product} />
-          </a>
-        ))}
-      </div>
-
-      {/* Pagination Component */}
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={setCurrentPage}
-      />
-
-      {/* Footer Component */}
-      <Footer />
-    </div>
+    </>
   );
 }
 
@@ -124,7 +137,7 @@ export async function getServerSideProps() {
   return {
     props: {
       initialProducts: productsRes.data,
-      categories: categoriesRes.data, 
+      categories: categoriesRes.data,
     },
   };
 }
