@@ -25,7 +25,8 @@ body, html {
     background-color: #0070f3;
     color: white;
     border-radius: 5px;
-    cursor: pointer;
+    text-decoration: none;
+    text-decoration-line: none;
   }
   
   button:disabled {

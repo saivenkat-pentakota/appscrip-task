@@ -82,7 +82,7 @@ export default function Home({ initialProducts, categories }) {
             onChange={(e) => setSelectedCategory(e.target.value)}
             className={styles.selectFilter}
           >
-            <option value="">Select Category</option>
+            <option value="">SELECT CATEGORY</option>
             {categories.map((category) => (
               <option key={category} value={category}>
                 {category.charAt(0).toUpperCase() + category.slice(1)}
